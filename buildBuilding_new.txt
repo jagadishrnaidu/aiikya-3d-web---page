@@ -1,0 +1,41 @@
+function buildBuilding() {
+  buildingGroup = new THREE.Group();
+
+  // Load the actual elevation image
+  const textureLoader = new THREE.TextureLoader();
+  const elevationTexture = textureLoader.load('elevation.jpg');
+
+  // Create a plane to display the elevation image
+  const buildingWidth = 16;
+  const buildingHeight = 12;
+  const buildingGeometry = new THREE.PlaneGeometry(buildingWidth, buildingHeight);
+  
+  const buildingMaterial = new THREE.MeshStandardMaterial({
+    map: elevationTexture,
+    side: THREE.DoubleSide,
+    transparent: false,
+  });
+
+  const buildingPlane = new THREE.Mesh(buildingGeometry, buildingMaterial);
+  buildingPlane.position.set(0, buildingHeight / 2, 0);
+  buildingPlane.castShadow = true;
+  buildingPlane.receiveShadow = true;
+  buildingGroup.add(buildingPlane);
+
+  // Add slight depth to make it look more 3D
+  const depthGeometry = new THREE.BoxGeometry(buildingWidth, buildingHeight, 0.5);
+  const depthMaterial = new THREE.MeshStandardMaterial({
+    color: 0xf5f1e8,
+    roughness: 0.7,
+  });
+  const buildingDepth = new THREE.Mesh(depthGeometry, depthMaterial);
+  buildingDepth.position.set(0, buildingHeight / 2, -0.25);
+  buildingGroup.add(buildingDepth);
+
+  // Create invisible interactive units for clicking
+  unitsData.forEach((unit) => {
+    createUnit(unit);
+  });
+
+  scene.add(buildingGroup);
+}

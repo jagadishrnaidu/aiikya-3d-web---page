@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Explore our stunning G+3 floor residential building with interactive 3D visualization. Choose from Studios, Duplex units, and Penthouses with modern amenities.">
+  <title>Luxury Residential Living | 3D Virtual Tour</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Loading Screen -->
+  <div class="loading" id="loading">
+    <div class="loading-spinner"></div>
+    <p style="margin-top: 1rem; color: var(--text-secondary);">Loading 3D Experience...</p>
+  </div>
+
+  <!-- 3D Canvas -->
+  <div id="canvas-container"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">VERDANT HEIGHTS</div>
+      <div class="header-actions">
+        <button class="btn btn-secondary">Contact Us</button>
+        <button class="btn btn-primary">Schedule Visit</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filter Panel -->
+  <aside class="filter-panel" id="filterPanel">
+    <div class="filter-header">
+      <h2>Filter Units</h2>
+      <button class="btn-icon btn-secondary" id="closeFilters">✕</button>
+    </div>
+
+    <div class="filter-group">
+      <label>Unit Type</label>
+      <div class="filter-chips" id="typeFilter">
+        <div class="chip active" data-type="all">All</div>
+        <div class="chip" data-type="Studio">Studio</div>
+        <div class="chip" data-type="Flat">Flat</div>
+        <div class="chip" data-type="Duplex">Duplex</div>
+        <div class="chip" data-type="Penthouse">Penthouse</div>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label>Availability</label>
+      <div class="filter-chips" id="availabilityFilter">
+        <div class="chip active" data-availability="all">All</div>
+        <div class="chip" data-availability="AVAILABLE">Available</div>
+        <div class="chip" data-availability="SOLD">Sold</div>
+      </div>
+    </div>
+
+    <div class="filter-actions">
+      <button class="btn btn-secondary" id="resetFilters" style="flex: 1;">Reset</button>
+      <button class="btn btn-primary" id="applyFilters" style="flex: 1;">Apply</button>
+    </div>
+  </aside>
+
+  <!-- Filter Toggle Button -->
+  <button class="btn btn-primary filter-toggle" id="filterToggle">
+    🔍 Filters
+  </button>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button class="control-button" id="resetCamera">
+      <span>↻</span> Reset View
+    </button>
+    <button class="control-button" id="autoRotate">
+      <span>⟳</span> Auto Rotate
+    </button>
+  </div>
+
+  <!-- Unit Detail Modal -->
+  <div class="modal-overlay" id="unitModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title-section">
+          <h2 id="modalUnitId">Unit G-01</h2>
+          <span class="unit-type-badge" id="modalUnitType">Studio</span>
+          <span class="status-badge available" id="modalStatus">Available</span>
+        </div>
+        <button class="modal-close" id="closeModal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Image Carousel -->
+        <div class="image-carousel">
+          <div class="carousel-images" id="carouselImages">
+            <!-- Images will be inserted dynamically -->
+          </div>
+          <button class="carousel-button prev" id="prevImage">‹</button>
+          <button class="carousel-button next" id="nextImage">›</button>
+          <div class="carousel-indicators" id="carouselIndicators">
+            <!-- Indicators will be inserted dynamically -->
+          </div>
+        </div>
+
+        <!-- Specifications -->
+        <div class="specs-grid" id="specsGrid">
+          <div class="spec-card">
+            <div class="spec-icon">🛏️</div>
+            <div class="spec-value" id="specBedrooms">2</div>
+            <div class="spec-label">Bedrooms</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon">🚿</div>
+            <div class="spec-value" id="specBathrooms">2</div>
+            <div class="spec-label">Bathrooms</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon">📐</div>
+            <div class="spec-value" id="specSurface">85 m²</div>
+            <div class="spec-label">Surface Area</div>
+          </div>
+          <div class="spec-card">
+            <div class="spec-icon">🧭</div>
+            <div class="spec-value" id="specOrientation">North</div>
+            <div class="spec-label">Orientation</div>
+          </div>
+        </div>
+
+        <!-- Amenities -->
+        <div class="amenities-section">
+          <h3>Amenities & Features</h3>
+          <div class="amenities-grid" id="amenitiesGrid">
+            <!-- Amenities will be inserted dynamically -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="viewInterior">🏠 View Interior</button>
+        <button class="btn btn-primary" id="requestInfo">📧 Request Info</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
